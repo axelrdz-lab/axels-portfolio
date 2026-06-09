@@ -1,0 +1,54 @@
+---
+interface Props {
+  id?: string;
+  href?: string; 
+  download?: boolean;
+  class?: string;
+}
+const { class: className, href, ...rest } = Astro.props
+const Tag = href ? 'a' : 'button'
+---
+
+<Tag href={href} class:list={["rb-wrap rounded-lg transition-all duration-200 hover:scale-105 active:scale-95", className]} {...rest}>
+  <div class="
+    rb-inner flex flex-row gap-2 items-center
+    transition-all duration-200 hover:animate-pulse active:animate-none 
+    font-geist text-black 
+    bg-white/90 rounded-md py-2 px-5">
+    <slot />
+    <slot name="icon">
+  </div>
+  <div class="rb-glow"></div>
+</Tag>
+
+<style>
+  @keyframes rainbow-rotate {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+  }
+  .rb-wrap {
+    position: relative;
+    display: inline-flex;
+    padding: 1.5px;
+    background: linear-gradient(90deg, #ff0000, #ff7700, #ffff00, #00ff00, #0000ff, #8b00ff, #ff0000);
+    background-size: 200% 200%;
+    animation: rainbow-rotate 3s linear infinite;
+  }
+  .rb-inner {
+    cursor: pointer;
+  }
+  .rb-glow {
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 6px;
+    border-radius: 50%;
+    background: linear-gradient(90deg, transparent, #ff0000, #ff7700, #ffff00, #00ff00, #0000ff, #8b00ff, transparent);
+    background-size: 200% 200%;
+    animation: rainbow-rotate 3s linear infinite;
+    filter: blur(15px);
+    opacity: 0.7;
+  }
+</style>

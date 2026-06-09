@@ -1,0 +1,114 @@
+---
+import ExternalLink from '../icons/ExternalLink.astro';
+import Section from './Section.astro';
+import IconButton from '../buttons/IconButton.astro';
+---
+
+
+<div class="hover-3d my-4">
+  <Section class="border border-white/10 rounded-md " gap="gap-0">
+    
+    <!-- song cover, name, album, link -->
+    <div class="flex flex-row w-full items-center gap-4 p-4">
+      
+      <img id="track-cover" src="" alt="last played song cover" class="size-12 rounded-md object-cover">
+      <div class="grow flex flex-col">
+        <h4 id="track-name" class="text-lg/5 lg:text-xl/6 font-geist-mono line-heig"></h4>
+        <p id="track-info" class="text-sm/4 font-light"></p>
+      </div>
+      <IconButton id="track-url" href="#">
+        <ExternalLink class="self-start size-6" />
+      </IconButton>
+
+    </div>
+    <!-- stream info -->
+    <div class="flex flex-row items-center bg-white/5 py-2 px-4">  
+      <span id="track-streaming-now-indicator" class="relative flex size-2 w-0">
+        <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
+        <span class="relative inline-flex size-2 rounded-full bg-green-400"></span>
+      </span>
+      <p id="track-streaming-status" class="text-xs"></p>
+    </div>
+  </Section>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+
+<script>
+
+  const lang = document.documentElement.getAttribute('lang')
+  const i18n = {
+    es: {
+      nowPlaying: 'Escuchando ahora',
+      secondsAgo: (m: number) => `Escuchado hace ${m} segundos`,
+      minutesAgo: (m: number) => `Escuchado hace ${m} min`,
+      hoursAgo: (h: number) => `Escuchado hace ${h} horas`,
+    },
+    en: {
+      nowPlaying: 'Listening now',
+      secondsAgo: (m: number) => `Listened ${m} seconds ago`,
+      minutesAgo: (m: number) => `Listened ${m} min ago`,
+      hoursAgo: (h: number) => `Listened ${h} hours ago`,
+    }
+  }
+  const texts = i18n[lang as 'es' | 'en']
+
+  async function updateTrack() {
+    const API_KEY = import.meta.env.PUBLIC_LAST_FM_API_KEY
+    const USERNAME = import.meta.env.PUBLIC_LAST_FM_USERNAME
+
+    const response = await fetch(
+      `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${USERNAME}&api_key=${API_KEY}&format=json&limit=1`
+    )
+    const data = await response.json()
+    const track = data.recenttracks.track[0]
+    const isNowPlaying = track['@attr']?.nowplaying === 'true'
+    
+    const nameElement = document.getElementById('track-name')
+    const infoElement = document.getElementById('track-info')
+    const coverElement = document.getElementById('track-cover') as HTMLImageElement
+    const urlElement = document.getElementById('track-url') as HTMLAnchorElement
+    const statusElement = document.getElementById('track-streaming-status')
+    const indicatorElement = document.getElementById('track-streaming-now-indicator')
+    
+    if (indicatorElement && isNowPlaying) {
+      indicatorElement.classList.remove('w-0') 
+      indicatorElement.classList.add('me-2') 
+    } else {
+      indicatorElement?.classList.add('w-0') 
+      indicatorElement?.classList.remove('me-2') 
+    }
+
+    if (nameElement) nameElement.textContent = track.name
+    if (infoElement) infoElement.textContent = `${track.artist['#text']} • ${track.album['#text']}`
+    if (coverElement) coverElement.src = track.image[2]['#text']
+    if (statusElement) statusElement.textContent = isNowPlaying 
+        ? texts.nowPlaying 
+        : getRelativeTime(track.date?.uts, track.date?.text)
+
+    const itunesResponse = await fetch(
+      `https://itunes.apple.com/search?term=${encodeURIComponent(track.artist['#text'] + ' ' + track.name)}&limit=1&entity=song`
+    )
+    const itunesData = await itunesResponse.json()
+    const appleUrl = itunesData.results[0]?.trackViewUrl
+    if (urlElement && appleUrl) urlElement.href = appleUrl
+  }
+
+  updateTrack()
+  setInterval(updateTrack, 30000)
+
+  function getRelativeTime(uts: number, textDate: string): string {
+    const seconds = Math.floor(Date.now() / 1000) - uts
+    if (seconds < 60) return texts.secondsAgo(Math.floor(seconds))
+    if (seconds < 3600) return texts.minutesAgo(Math.floor(seconds / 60))
+    if (seconds < 86400) return texts.hoursAgo(Math.floor(seconds / 3600))
+    return textDate
+  }
+
+</script>

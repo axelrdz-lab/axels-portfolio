@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Geist+Mono:ital,wght@0,100..900;1,100..900&family=Geist:ital,wght@0,100..900;1,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
+@import "tailwindcss";
+@plugin "daisyui";
+
+@theme {
+  
+  --color-pinkpantheress-500: #B27476;
+  --color-grape-500: #3C3A4D;
+
+  --font-source-serif: 'Source Serif 4', serif;; 
+  --font-alexandria: 'Alexandria', sans-serif;
+  --font-geist: 'Geist', sans-serif;
+  --font-geist-mono: 'Geist Mono', monospace;
+
+}
+
+[data-theme="dark"] {
+  --gradient-bg: 
+    radial-gradient(125% 125% at 50% 10%, rgb(38, 37, 42) 0%, rgb(38, 52, 66) 100%);
+
+}
+
+[data-theme="light"] {
+  --gradient-bg:
+    radial-gradient(125% 125% at 50% 10%, #7b7b97 40%, #6e677a 100%);
+}

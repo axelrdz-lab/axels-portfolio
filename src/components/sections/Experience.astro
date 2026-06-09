@@ -1,0 +1,17 @@
+---
+import Section from './Section.astro';
+import ExperienceCard from '../ExperienceCard.astro';
+
+import { jobs } from '../../data/jobs.js';
+
+import { t, getLang } from '../../i18n/utils';
+const currentLang = getLang(Astro.currentLocale)
+---
+
+<Section id="experience" title={t(currentLang, 'experience.title')}>
+  <ul class ="flex flex-col gap-4">
+    {jobs.map(job => (
+      <ExperienceCard job={job}/>
+    ))}
+  </ul>
+</Section>

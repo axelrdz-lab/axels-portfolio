@@ -1,0 +1,60 @@
+---
+import ArrowDown from './icons/ArrowDown.astro';
+import IconButton from './buttons/IconButton.astro';
+import { getLang } from '../i18n/utils';
+import type { Job } from '../data/jobs';
+
+interface Props {
+  job: Job;
+}
+
+const { job } = Astro.props;
+const currentLang = getLang(Astro.currentLocale);
+const position = currentLang === 'es' ? job.position.es : job.position.en;
+const description = currentLang === 'es' ? job.description.es : job.description.en;
+---
+
+<li class="flex flex-col gap-0 p-4 border border-white/20 rounded-md bg-white/5">
+  <!-- info inicial (puesto, empresa y año) -->
+  <div class="flex flex-row items-center gap-4 w-full">
+    <div class="flex flex-col gap-2 grow">
+      <h3 class="text-lg/5 text-white">{position}</h3>
+      <p class="-mt-1 text-sm/4 font-light text-white/70">{job.company}</p>
+    </div>
+    <p class="font-geist-mono text-white/70 w-fit">{job.year}</p>
+    <IconButton data-target={`content-${job.id}`}>
+      <ArrowDown class="size-5 transition-all duration-200" />
+    </IconButton>
+  </div>
+  <!-- ver mas (descripcio y stack) -->
+  <div id={`content-${job.id}`} class="
+    max-h-0 overflow-hidden
+    flex flex-col gap-4
+    transition-all duration-100
+  ">
+    <div class="border-b border-dashed border-white/20 pt-4"></div>
+    <p>{description}</p>
+  </div>
+</li>
+
+<script>
+  document.querySelectorAll('[data-target]').forEach(button => {
+
+    button.addEventListener('click', () => {
+      const target = button.getAttribute('data-target')
+      if (!target) return
+      const content = document.getElementById(target)
+      const arrow = button.querySelector('svg')
+      if (!content || !arrow) return
+
+      if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+        content.style.maxHeight = '0px'
+        arrow.style.transform = 'rotate(0deg)'
+      } else {
+        content.style.maxHeight = content.scrollHeight + 'px'
+        arrow.style.transform = 'rotate(180deg)'
+      }
+
+    })
+  })
+</script>

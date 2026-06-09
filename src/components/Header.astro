@@ -1,0 +1,58 @@
+---
+
+import Download from './icons/Download.astro';
+import Github from './icons/socials/Github.astro'
+import Linkedin from './icons/socials/Linkedin.astro'
+import Mail from './icons/socials/Mail.astro'
+
+import RainbowButton from '../components/buttons/RainbowButton.astro';
+import TooltipIcon from './TooltipIcon.astro';
+import Badge from '../components/Badge.astro';
+import { Image } from 'astro:assets';
+import profilePic from '../assets/images/yo.jpeg'
+
+import { t, getLang } from '../i18n/utils';
+const currentLang = getLang(Astro.currentLocale)
+---
+
+<header id="home" class="flex flex-col gap-6 mx-4 md:mx-8 lg:mx-12 z-2 scroll-mt-32">
+
+	<!-- profile pic, open to work badge -->
+	<div class="relative">
+		<Image src={profilePic} alt="axel's profile pic" class="rounded-xl size-28 object-cover" />
+		<Badge class="absolute left-20 bottom-2" text={t(currentLang, 'header.available')}/>
+	</div>
+	<!-- title, subtitle, about -->
+	<div class="flex flex-col gap-2">
+		<h1 class="text-mist-50 text-5xl lg:text-6xl font-source-serif italic transition-all duration-300">
+			Axel Rodríguez
+		</h1>
+		<h3 class="text-lg/5 lg:text-xl/6 font-geist-mono">{t(currentLang, 'header.title')}</h3>
+	</div>
+	<p class="transition-all duration-200">
+		<span class="text-yellow-200 text-shadow-2xs">{t(currentLang, 'header.about.degree')}</span>
+		{t(currentLang, 'header.about.rest')}
+	</p>
+	<div class="border-b border-dashed border-white/30"></div>
+	<div class="flex flex-row w-full gap-2">
+		<RainbowButton id="download-cv-button" href="/docs/cv_axel_rodriguez_dev_and_designer.pdf" download>
+			{t(currentLang, 'header.downloadCV')}
+			<Download slot="icon" class="size-4" />
+		</RainbowButton>
+		<ul class="flex flex-row grow items-center justify-end gap-2">
+			<TooltipIcon href='https://github.com/axelrdz-lab' name='Github'>
+				<Github class="size-9" />
+			</TooltipIcon>
+			<TooltipIcon href="https://www.linkedin.com/in/axelrdzc" name='LinkedIn'>
+				<Linkedin class="size-9" />
+			</TooltipIcon>
+			<TooltipIcon name='Mail'>
+				<Mail class="size-9" />
+			</TooltipIcon>
+		</ul>
+	</div>
+
+</header>
+
+<script>
+</script>

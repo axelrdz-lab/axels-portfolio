@@ -1,0 +1,42 @@
+---
+
+interface Props {
+  id?: string;
+  name: string;
+  href?: string;
+}
+
+const { id, name, href } = Astro.props
+const Tag = href ? 'a' : 'div'
+const tooltipId = id ? `tooltip-${id}` : `tooltip-${name}`
+---
+
+<li data-tooltip-target={tooltipId} class="relative transition-all duration-200 hover:scale-110">
+  <div id={tooltipId} class="absolute -top-8 left-1/2 -translate-x-1/2 z-10 
+    px-2 py-1 rounded-md shadow-xs max-w-100
+    text-xs bg-zinc-900 border border-white/20
+    pointer-events-none opacity-0"
+  >
+    <p class="text-nowrap">{name}</p>
+  </div>
+  <Tag href={href} target="_blank" rel="noopener noreferrer">
+    <slot />
+  </Tag>
+</li>
+
+<script>
+  document.querySelectorAll('[data-tooltip-target]').forEach (icon => {
+    icon.addEventListener('mouseenter', () => {
+      const target = icon.getAttribute('data-tooltip-target')
+      if (!target) return
+      const tooltip = document.getElementById(target)
+      tooltip?.classList.remove('opacity-0')
+    })
+    icon.addEventListener('mouseleave', () => {
+      const target = icon.getAttribute('data-tooltip-target')
+      if (!target) return
+      const tooltip = document.getElementById(target)
+      tooltip?.classList.add('opacity-0')
+    })
+  })
+</script>

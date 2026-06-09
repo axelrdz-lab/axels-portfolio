@@ -1,0 +1,23 @@
+---
+import Section from './Section.astro';
+
+import { icons, type IconName } from '../icons/techStack/techIndex';
+import TooltipIcon from '../TooltipIcon.astro';
+import { techStack } from '../../data/techStack';
+
+import { t, getLang } from '../../i18n/utils';
+const currentLang = getLang(Astro.currentLocale)
+---
+
+<Section id="stack" title={t(currentLang, 'techStack.title')}>
+  <ul class="w-full flex flex-wrap gap-4">
+    {techStack.map(technology => {
+      const IconComponent = icons[technology.icon as IconName]
+      return (
+        <TooltipIcon name={technology.name}>
+          <IconComponent class="size-6" />
+        </TooltipIcon>
+      )
+    })}
+  </ul>
+</Section>

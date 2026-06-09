@@ -1,0 +1,70 @@
+---
+
+import Badge from './Badge.astro';
+
+import Global from './icons/Global.astro';
+import Github from './icons/socials/Github.astro';
+import TooltipIcon from './TooltipIcon.astro';
+
+import { icons, type IconName } from './icons/techStack/techIndex';
+import type { Project } from '../data/projects';
+import { t, getLang } from '../i18n/utils';
+
+interface Props {
+  class?: string;
+  project: Project;
+}
+
+const { class: className, project } = Astro.props
+
+const currentLang = getLang(Astro.currentLocale)
+const projectName = (currentLang == 'es') ? project.name.es : project.name.en
+const projectDesc = (currentLang == 'es') ? project.description.es : project.description.en
+const projectStatus = project.status ? t(currentLang, `projectStatus.${project.status}`) : ''
+
+
+const fillColor = project.status === 'completed' ? 'fill-green-500' 
+  : project.status === 'in-development' ? 'fill-orange-500' 
+  : 'fill-blue-500'
+const bgColor = project.status === 'completed' ? 'bg-green-400/20' 
+  : project.status === 'in-development' ? 'bg-orange-400/10' 
+  : 'fill-blue-500'
+---
+
+<div class=" 
+  flex flex-col rounded-md w-full 
+  border border-white/10 bg-white/5
+  hover:scale-102 hover:shadow-lg hover:shadow-zinc-900/5 transition-all duration-200
+">
+  {project.image &&
+  <img src={project.image} class="h-fit object-cover object-center rounded-md rounded-b-none" alt="">
+  }
+  <div class="flex flex-col gap-4 items-start p-4 h-full">
+    <ul class="flex flex-row w-full gap-2 justify-between items-center">
+      <Badge fillColor={fillColor} bgColor={bgColor} class="mr-auto" text={projectStatus}/>
+      <TooltipIcon id=`github-${project.id}` name="Ver repositorio" href={project.githubLink}>
+        <Github class="size-7"/>
+      </TooltipIcon>
+      {project.liveLink && (
+        <TooltipIcon id={project.id} name="Ver demo" href={project.liveLink}>
+          <Global class="size-7"/>
+        </TooltipIcon>
+      )}
+    </ul>
+    <div class="flex flex-col grow gap-2">
+      <p class="font-geist text-lg/5 font-medium">{projectName}</p>
+      <p class="text-sm/5 font-light text-white/70">{projectDesc}</p>
+    </div>
+    <ul class="flex row gap-2">
+      {project.techStack.map(technology => {
+        const IconComponent = icons[technology.icon as IconName]
+        const iconId = `${project.id}-${technology.name}`
+        return (
+          <TooltipIcon id={iconId} name={technology.name}>
+            <IconComponent class="size-6" />
+          </TooltipIcon>
+        )
+      })}
+    </ul>
+  </div>
+</div>

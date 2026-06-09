@@ -1,0 +1,20 @@
+---
+interface Props {
+  id?: string;
+  class?: string;
+  href?: string;
+  targetBlank?: boolean
+}
+
+const { class: className, href, targetBlank, ...rest } = Astro.props;
+const Tag = href ? 'a' : 'button'
+const target = targetBlank ? '_blank' : ''
+---
+
+<Tag href={href} target={target} rel="noopener noreferrer" {...rest} class:list={[
+  "p-1 rounded-md border border-transparent",
+  "hover:bg-white/20 hover:border-white/10 hover:cursor-pointer hover:scale-105",
+  "active:bg-white/30", 
+  "transition duration-200", className]} {...rest}>
+  <slot class="size-20" />
+</Tag>
