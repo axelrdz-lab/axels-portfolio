@@ -10,7 +10,7 @@ const currentLang = getLang(Astro.currentLocale)
 ---
 
 <Section id="stack" title={t(currentLang, 'techStack.title')}>
-  <ul class="w-full flex flex-wrap gap-4">
+  <ul class="w-full flex flex-wrap gap-4 bg-white/10 border border-white/20 p-4 rounded-md">
     {techStack.map(technology => {
       const IconComponent = icons[technology.icon as IconName]
       return (

@@ -7,6 +7,7 @@ import Css from './Css.astro';
 import Laravel from './Laravel.astro';
 import Kotlin from './Kotlin.astro';
 import Compose from './Compose.astro';
+import MaterialDesign from './MaterialDesign.astro';
 import Supabase from './Supabase.astro';
 import Firebase from './Firebase.astro';
 import Postgre from './Postgre.astro';
@@ -17,7 +18,7 @@ import Bootstrap from './Bootstrap.astro';
 
 export const icons = {
   Html, AstroIcon, React, Javascript, Typescript, 
-  Css, Laravel, Kotlin, Compose, Supabase, Firebase, 
+  Css, Laravel, Kotlin, Compose, MaterialDesign, Supabase, Firebase, 
   Postgre, Git, Tailwind, Bootstrap, Figma
 }
 

@@ -1,7 +1,11 @@
 ---
 import ArrowDown from './icons/ArrowDown.astro';
 import IconButton from './buttons/IconButton.astro';
+import TooltipIcon from './TooltipIcon.astro';
+
 import { getLang } from '../i18n/utils';
+
+import { icons, type IconName } from './icons/techStack/techIndex';
 import type { Job } from '../data/jobs';
 
 interface Props {
@@ -21,7 +25,7 @@ const description = currentLang === 'es' ? job.description.es : job.description.
       <h3 class="text-lg/5 text-white">{position}</h3>
       <p class="-mt-1 text-sm/4 font-light text-white/70">{job.company}</p>
     </div>
-    <p class="font-geist-mono text-white/70 w-fit">{job.year}</p>
+    <time class="font-geist-mono text-white/70 w-fit">{job.year}</time>
     <IconButton data-target={`content-${job.id}`}>
       <ArrowDown class="size-5 transition-all duration-200" />
     </IconButton>
@@ -33,7 +37,25 @@ const description = currentLang === 'es' ? job.description.es : job.description.
     transition-all duration-100
   ">
     <div class="border-b border-dashed border-white/20 pt-4"></div>
-    <p>{description}</p>
+    <ul class="text-base/[22px] font-light flex flex-col gap-1">
+      {description.map(point => (
+        <li class="text-sm text-white/70 flex gap-2">
+          <span class="text-white/40 mt-1">▸</span>
+          <span>{point}</span>
+        </li>
+      ))}
+    </ul>
+    <ul class="flex row gap-2">
+      {job.techStack.map(technology => {
+        const IconComponent = icons[technology.icon as IconName]
+        const iconId = `${job.id}-${technology.name}`
+        return (
+          <TooltipIcon id={iconId} name={technology.name}>
+            <IconComponent class="size-6" />
+          </TooltipIcon>
+        )
+      })}
+    </ul>
   </div>
 </li>
 

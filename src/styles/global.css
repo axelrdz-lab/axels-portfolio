@@ -14,13 +14,24 @@
 
 }
 
+:root {
+  --bg-color: white;
+}
+
 [data-theme="dark"] {
+  --bg-color: rgb(38, 37, 42);
   --gradient-bg: 
-    radial-gradient(125% 125% at 50% 10%, rgb(38, 37, 42) 0%, rgb(38, 52, 66) 100%);
+    radial-gradient(125% 125% at 50% 10%, rgb(38, 37, 42) 0%, rgb(53, 56, 68) 100%);
 
 }
 
 [data-theme="light"] {
+  --bg-color: 757588;
   --gradient-bg:
-    radial-gradient(125% 125% at 50% 10%, #7b7b8c 40%, #817c8a 100%);
+    radial-gradient(125% 125% at 50% 10%,  #6F7085 0%, #818A93 100%);
 }
+
+/*
+    radial-gradient(125% 125% at 50% 10%, #727276 40%, #58524f 100%);
+    backgrouradial-gradient(50% 50% at 50% 50%, #6F7085 0%, #818A93 100%), radial-gradient(82.95% 45.16% at 50% 50%, rgba(20, 20, 20, 0.60) 0%, rgba(122, 122, 122, 0.60) 100%)
+*/

@@ -1,5 +1,5 @@
 import type { Technology } from "./techStack";
-import { techStack } from "./techStack";
+import { techStack, findTech } from "./techStack";
 
 export type ProjectStatus = 'completed' | 'in-development'  | 'coming-soon';
 export interface Project {
@@ -13,7 +13,6 @@ export interface Project {
   techStack: Technology[];
 }
 
-const findTech = (id: string) => techStack.find(t => t.id === id)!
 export const projects: Project[] = [
   {
     id: '1',
@@ -22,7 +21,7 @@ export const projects: Project[] = [
       es: 'Rediseño completo de una tienda de música local implementando una nueva identidad visual, arquitectura de información mejorada e implementación frontend con JavaScript vanilla.', 
       en: 'Complete redesign of a local music store implementing a new visual identity, improved information architecture and a frontend implemented with vanilla JavaScript.' 
     },
-    image: '/src/assets/images/projects/tacea-music-redesign.webp',
+    image: '/images/projects/tacea-music-redesign.webp',
     githubLink: 'https://github.com/axelrdz-lab/tacea-music-redesign',
     liveLink: 'https://axelrdz-lab.github.io/tacea-music-redesign/',
     status: 'completed',
@@ -39,13 +38,14 @@ export const projects: Project[] = [
       es: 'Aplicación Android nativa que digitalizó la operación completa de un negocio de servicios técnicos, centralizando inventario, clientes, agenda y finanzas en un solo lugar.', 
       en: 'Native Android application that digitized the entire operation of a technical services business, centralizing inventory, clients, scheduling, and finances in one place.'
     },
-    image: '/src/assets/images/projects/roco-admin.webp',
+    image: '/images/projects/roco-admin.webp',
     githubLink: 'https://github.com/axelrdz-lab/rocoadmin-app',
     /*liveLink*/
     status: 'completed',
     techStack: [
       findTech('kotlin'),
       findTech('compose'),
+      findTech('material'),
       findTech('supabase'),
       findTech('postgresql')
     ]

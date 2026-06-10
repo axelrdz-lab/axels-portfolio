@@ -5,6 +5,8 @@ export interface Technology {
   name: string;
 }
 
+export const findTech = (id: string) => techStack.find(t => t.id === id)!
+
 export const techStack = [
   {
     id: 'html',
@@ -50,6 +52,11 @@ export const techStack = [
     id: 'compose',
     icon: 'Compose',
     name: 'Jetpack Compose',
+  },
+  {
+    id: 'material',
+    icon: 'MaterialDesign',
+    name: 'Material Design'
   },
   {
     id: 'supabase',

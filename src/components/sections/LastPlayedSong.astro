@@ -49,12 +49,14 @@ import IconButton from '../buttons/IconButton.astro';
       secondsAgo: (m: number) => `Escuchado hace ${m} segundos`,
       minutesAgo: (m: number) => `Escuchado hace ${m} min`,
       hoursAgo: (h: number) => `Escuchado hace ${h} horas`,
+      daysAgo: (d: string) => `Escuchado el ${d}`,
     },
     en: {
       nowPlaying: 'Listening now',
       secondsAgo: (m: number) => `Listened ${m} seconds ago`,
       minutesAgo: (m: number) => `Listened ${m} min ago`,
       hoursAgo: (h: number) => `Listened ${h} hours ago`,
+      daysAgo: (d: string) => `Listened on ${d}`,
     }
   }
   const texts = i18n[lang as 'es' | 'en']
@@ -90,7 +92,7 @@ import IconButton from '../buttons/IconButton.astro';
     if (coverElement) coverElement.src = track.image[2]['#text']
     if (statusElement) statusElement.textContent = isNowPlaying 
         ? texts.nowPlaying 
-        : getRelativeTime(track.date?.uts, track.date?.text)
+        : getRelativeTime(track.date?.uts, track.date?.['#text'])
 
     const itunesResponse = await fetch(
       `https://itunes.apple.com/search?term=${encodeURIComponent(track.artist['#text'] + ' ' + track.name)}&limit=1&entity=song`
@@ -104,11 +106,11 @@ import IconButton from '../buttons/IconButton.astro';
   setInterval(updateTrack, 30000)
 
   function getRelativeTime(uts: number, textDate: string): string {
-    const seconds = Math.floor(Date.now() / 1000) - uts
+    const seconds = Math.floor(Date.now() / 1000) - Number(uts)
     if (seconds < 60) return texts.secondsAgo(Math.floor(seconds))
     if (seconds < 3600) return texts.minutesAgo(Math.floor(seconds / 60))
     if (seconds < 86400) return texts.hoursAgo(Math.floor(seconds / 3600))
-    return textDate
+    return texts.daysAgo(textDate)
   }
 
 </script>
