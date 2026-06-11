@@ -58,7 +58,7 @@ export const projects: Project[] = [
       en: 'Personal portfolio built with Astro, featuring bilingual support, Last.fm integration, and dark mode.' 
     },
     /*image*/
-    githubLink: 'https://github.com/axelrdz-lab/portfolio',
+    githubLink: 'https://github.com/axelrdz-lab/axels-portfolio',
     /*liveLink*/
     status: 'completed',
     techStack: [

@@ -9,7 +9,7 @@ import RainbowButton from '../components/buttons/RainbowButton.astro';
 import TooltipIcon from './TooltipIcon.astro';
 import Badge from '../components/Badge.astro';
 import { Image } from 'astro:assets';
-import profilePic from '../assets/images/yo.jpeg'
+import profilePic from '../assets/images/miiyop.png'
 
 import { t, getLang } from '../i18n/utils';
 const currentLang = getLang(Astro.currentLocale)
@@ -30,8 +30,9 @@ const currentLang = getLang(Astro.currentLocale)
 		<h3 class="text-lg/5 lg:text-xl/6 font-geist-mono">{t(currentLang, 'header.title')}</h3>
 	</div>
 	<p class="transition-all duration-200">
-		<span class="text-yellow-200 text-shadow-2xs">{t(currentLang, 'header.about.degree')}</span>
-		{t(currentLang, 'header.about.rest')}
+		{t(currentLang, 'header.about.intro')}
+		<strong> {t(currentLang, 'header.about.degree')}</strong>
+		{', '}{t(currentLang, 'header.about.rest')}
 	</p>
 	<!-- cv download, socials -->
 	<div class="border-b border-dashed border-white/30"></div>

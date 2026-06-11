@@ -21,14 +21,14 @@
 [data-theme="dark"] {
   --bg-color: rgb(38, 37, 42);
   --gradient-bg: 
-    radial-gradient(125% 125% at 50% 10%, rgb(38, 37, 42) 0%, rgb(53, 56, 68) 100%);
+    radial-gradient(125% 125% at 50% 10%, rgb(31, 30, 35) 0%, rgb(42, 46, 65) 100%);
 
 }
 
 [data-theme="light"] {
   --bg-color: 757588;
   --gradient-bg:
-    radial-gradient(125% 125% at 50% 10%,  #6F7085 0%, #818A93 100%);
+    radial-gradient(225% 125% at 50% 10%, #7a7480 0%, #60689d 100%);
 }
 
 /*

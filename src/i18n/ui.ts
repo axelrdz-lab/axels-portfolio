@@ -12,9 +12,10 @@ export const labels = {
     "header": {
       "name": "Axel Rodríguez",
       "title": "Diseñador UI/UX, Desarrollador Web y Móvil",
-      "about": { 
-        "degree": "Ingeniero en Tecnologías de la Información",
-        "rest": " especializado en desarrollo móvil nativo Android, desarrollo web y diseño UI/UX. Disfruto cada paso del proceso, desde el prototipado hasta el despliegue en producción. Creando soluciones creativas, funcionales y a la medida.",
+      "about": {
+        "intro": "Hola, soy un desarrollador que ama diseñar —",
+        "degree": "Ingeniero en Tecnología de la Información",
+        "rest": "enfocado en crear productos creativos y funcionales adaptados a las necesidades reales de los usuarios."
       },
       "available": "Disponible para trabajar",
       "downloadCV": "Descargar CV",
@@ -52,8 +53,9 @@ export const labels = {
       "name": "Axel Rodríguez",
       "title": "UI/UX Designer, Web and Mobile Developer",
       "about": {
+        "intro": "Hi, I'm a developer who loves to design —",
         "degree": "Information Technology Engineer",
-        "rest": "specialized in native Android mobile development, web development, and UI/UX design. I enjoy every step of the process, from prototyping to production deployment, creating creative, functional, and tailored solutions."
+        "rest": "focused on building creative, functional products tailored to real user needs."
       },
       "available": "Available for work",
       "downloadCV": "Download CV",

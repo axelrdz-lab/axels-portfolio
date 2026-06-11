@@ -1,5 +1,7 @@
 ---
 import "../styles/global.css";
+import openGraphImage from '../assets/images/opengraph.webp'
+
 const currentLang = Astro.currentLocale || 'es'
 ---
 
@@ -12,8 +14,17 @@ const currentLang = Astro.currentLocale || 'es'
 		<link rel="icon" type="image/svg+xml" href="/new-favicon.png" />
 		<link rel="icon" href="/new-favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<meta name="description" content="I am a mobile and web developer passionate about crafting creative and tailored accesible solutions." />
-		<title>Axel Rodríguez - Mobile & Web Developer, UI/UX Designer ◝(^⌣^)◜</title>
+		<meta name="description" content="Information Technology Engineer passionate about crafting creative and tailored accesible solutions." />
+		<title>Axel Rodríguez - Web & Mobile Developer, UI/UX Designer ◝(^⌣^)◜</title>
+
+		<meta property="og:title" content="Axel Rodríguez — Web & Mobile Developer, UI/UX Designer ◝(^⌣^)◜" />
+		<meta property="og:description" content="Information Technology Engineer passionate about crafting creative and tailored accesible solutions." />
+		<meta property="og:image" content="https://axels-portfolio-navy.vercel.app/images/opengraph.webp" />
+		<meta property="og:url" content="https://axels-portfolio-navy.vercel.app" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="Axel Rodríguez — Web & Mobile Developer, UI/UX Designer ◝(^⌣^)◜" />
+		<meta name="twitter:description" content="Information Technology Engineer passionate about crafting creative and tailored accesible solutions." />
+		<meta name="twitter:image" content="https://axels-portfolio-navy.vercel.app/images/opengraph.webp" />
 	</head>
 
 	<script is:inline>
