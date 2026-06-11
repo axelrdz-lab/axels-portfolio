@@ -33,7 +33,7 @@ const bgColor = project.status === 'completed' ? 'bg-green-400/20'
 
 <div class=" 
   flex flex-col rounded-md w-full 
-  border border-white/10 bg-white/5
+  border border-border bg-container
   hover:scale-102 hover:shadow-lg hover:shadow-zinc-900/5 transition-all duration-200
 ">
   {project.image &&
@@ -53,7 +53,7 @@ const bgColor = project.status === 'completed' ? 'bg-green-400/20'
     </ul>
     <div class="flex flex-col grow gap-2">
       <p class="font-geist text-lg/5 font-medium">{projectName}</p>
-      <p class="text-sm/5 font-light text-white/70">{projectDesc}</p>
+      <p class="text-sm/5 text-text-secondary">{projectDesc}</p>
     </div>
     <ul class="flex row gap-2">
       {project.techStack.map(technology => {

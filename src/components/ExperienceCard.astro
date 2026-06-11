@@ -18,14 +18,14 @@ const position = currentLang === 'es' ? job.position.es : job.position.en;
 const description = currentLang === 'es' ? job.description.es : job.description.en;
 ---
 
-<li class="flex flex-col gap-0 p-4 border border-white/20 rounded-md bg-white/5">
+<li class="flex flex-col gap-0 p-4 border border-border rounded-md bg-container">
   <!-- info inicial (puesto, empresa y año) -->
   <div class="flex flex-row items-center gap-4 w-full">
     <div class="flex flex-col gap-2 grow">
-      <h3 class="text-lg/5 text-white">{position}</h3>
-      <p class="-mt-1 text-sm/4 font-light text-white/70">{job.company}</p>
+      <h3 class="text-lg/5">{position}</h3>
+      <p class="-mt-1 text-sm/4 font-light text-text-secondary">{job.company}</p>
     </div>
-    <time class="font-geist-mono text-white/70 w-fit">{job.year}</time>
+    <time class="font-geist-mono text-text-secondary w-fit">{job.year}</time>
     <IconButton data-target={`content-${job.id}`}>
       <ArrowDown class="size-5 transition-all duration-200" />
     </IconButton>
@@ -36,11 +36,11 @@ const description = currentLang === 'es' ? job.description.es : job.description.
     flex flex-col gap-4
     transition-all duration-100
   ">
-    <div class="border-b border-dashed border-white/20 pt-4"></div>
-    <ul class="text-base/[22px] font-light flex flex-col gap-1">
+    <div class="border-b border-dashed border-divider pt-4"></div>
+    <ul class="text-base/[22px] flex flex-col gap-1">
       {description.map(point => (
-        <li class="text-sm text-white/70 flex gap-2">
-          <span class="text-white/40 mt-1">▸</span>
+        <li class="text-sm flex gap-2">
+          <span class="mt-1">▸</span>
           <span>{point}</span>
         </li>
       ))}

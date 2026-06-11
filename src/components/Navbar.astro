@@ -12,17 +12,17 @@ const currentLang = getLang(Astro.currentLocale);
 <nav class="w-full sticky top-3 z-50 backdrop-blur-lg transition">
   <ul class="
     flex items-center justify-center sm:justify-end gap-4 sm:gap-6 
-    bg-white/5 border border-white/20 rounded-md py-4 px-4 sm:px-6
+    bg-container border border-border rounded-md py-4 px-4 sm:px-6
     text-sm sm:text-base
     transition-all duration-300
   ">
-    <li class="hover:text-white transition-all duration-200">
+    <li class="hover:text-text-secondary transition-all duration-200">
       <a href="#home">{t(currentLang, 'navbar.home')}</a>
     </li>
-    <li class="hover:text-white transition-all duration-200">
+    <li class="hover:text-text-secondary transition-all duration-200">
       <a href="#projects">{t(currentLang, 'navbar.projects')}</a>
     </li>
-    <li class="hover:text-white transition-all duration-200">
+    <li class="hover:text-text-secondary transition-all duration-200">
       <a href="#experience">{t(currentLang, 'navbar.experience')}</a>
     </li>
     <li>
@@ -31,7 +31,7 @@ const currentLang = getLang(Astro.currentLocale);
         <Sun class="swap-off size-5" />
       </IconButton>
     </li>
-    <li class="border-l border-white/30 h-5"></li>
+    <li class="border-l border-divider h-5"></li>
     <li>
       <IconButton targetBlank={false} data-language-toggle>
         <Translate id="icon-translate" class="size-5" />

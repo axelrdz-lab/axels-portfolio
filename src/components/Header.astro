@@ -24,7 +24,7 @@ const currentLang = getLang(Astro.currentLocale)
 	</div>
 	<!-- title, subtitle, about -->
 	<div class="flex flex-col gap-2">
-		<h1 class="text-mist-50 text-5xl lg:text-6xl font-source-serif italic transition-all duration-300">
+		<h1 class="text-5xl lg:text-6xl font-source-serif italic transition-all duration-300">
 			Axel Rodríguez
 		</h1>
 		<h3 class="text-lg/5 lg:text-xl/6 font-geist-mono">{t(currentLang, 'header.title')}</h3>
@@ -35,7 +35,7 @@ const currentLang = getLang(Astro.currentLocale)
 		{', '}{t(currentLang, 'header.about.rest')}
 	</p>
 	<!-- cv download, socials -->
-	<div class="border-b border-dashed border-white/30"></div>
+	<div class="border-b border-dashed border-divider"></div>
 	<div class="flex flex-row w-full gap-2">
 		<RainbowButton id="download-cv-button" href="/docs/cv_axel_rodriguez_dev_and_designer.pdf" download>
 			{t(currentLang, 'header.downloadCV')}
@@ -48,7 +48,7 @@ const currentLang = getLang(Astro.currentLocale)
 			<TooltipIcon href="https://www.linkedin.com/in/axelrdzc" name='LinkedIn'>
 				<Linkedin class="size-9" />
 			</TooltipIcon>
-			<TooltipIcon name='Mail'>
+			<TooltipIcon href="mailto:its.axelrdzc@gmail.com" name='Mail'>
 				<Mail class="size-9" />
 			</TooltipIcon>
 		</ul>

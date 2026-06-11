@@ -8,11 +8,11 @@ interface Props {
 
 const { class : className, fillColor, bgColor, text } = Astro.props;
 const finalFillColor = fillColor ?? 'fill-green-500'
-const finalBgColor = `bg-white/10`
+const finalBgColor = `bg-container`
 ---
 
 <div class:list={["py-1 px-2 flex flex-row gap-2 items-center", 
-  "backdrop-blur-lg border border-white/20 rounded-md",
+  "backdrop-blur-lg border border-border rounded-md",
   className, finalBgColor
 ]}>
   <svg class=`size-2 ${finalFillColor}` xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">

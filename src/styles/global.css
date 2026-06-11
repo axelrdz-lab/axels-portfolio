@@ -4,10 +4,16 @@
 
 @theme {
   
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-border: var(--color-border);
+  --color-divider: var(--color-divider);
+  --color-container: var(--color-border);
+
   --color-pinkpantheress-500: #B27476;
   --color-grape-500: #3C3A4D;
 
-  --font-source-serif: 'Source Serif 4', serif;; 
+  --font-source-serif: 'Source Serif 4', serif;
   --font-alexandria: 'Alexandria', sans-serif;
   --font-geist: 'Geist', sans-serif;
   --font-geist-mono: 'Geist Mono', monospace;
@@ -19,16 +25,29 @@
 }
 
 [data-theme="dark"] {
+  
+  --color-text-primary: #f9fafb;
+  --color-text-secondary: rgba(249, 250, 251, 0.7);
+  --color-divider: rgba(249, 250, 251, 0.3);
+  --color-border: rgba(249, 250, 251, 0.2);
+  --color-container: rgba(249, 250, 251, 0.05);
+
   --bg-color: rgb(38, 37, 42);
   --gradient-bg: 
-    radial-gradient(125% 125% at 50% 10%, rgb(31, 30, 35) 0%, rgb(42, 46, 65) 100%);
+    radial-gradient(125% 125% at 50% 10%, rgb(31, 30, 35) 0%, rgb(28, 32, 50) 100%);
 
 }
 
 [data-theme="light"] {
-  --bg-color: 757588;
+  --color-text-primary: #313131;
+  --color-text-secondary: rgba(46, 46, 46, 0.8);
+  --color-divider: rgba(46, 46, 46, 0.3);
+  --color-border: rgba(46, 46, 46, 0.15);
+  --color-container: rgba(46, 46, 46, 0.05);
+
+  --bg-color: #e0decd;
   --gradient-bg:
-    radial-gradient(225% 125% at 50% 10%, #7a7480 0%, #60689d 100%);
+    radial-gradient(400% 425% at 50% 10%, #EDEEF2 0%, #868686 100%);
 }
 
 /*
