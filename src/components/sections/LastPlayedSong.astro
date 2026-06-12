@@ -10,11 +10,22 @@ import IconButton from '../buttons/IconButton.astro';
     
     <!-- song cover, name, album, link -->
     <div class="flex flex-row w-full items-center gap-4 p-4">
-      
-      <img id="track-cover" src="" alt="last played song cover" class="size-12 rounded-md object-cover">
-      <div class="grow flex flex-col">
-        <h4 id="track-name" class="text-lg/5 lg:text-xl/6 font-geist-mono line-heig"></h4>
-        <p id="track-info" class="text-sm/4 font-light"></p>
+      <!-- song cover & skeleton -->
+      <div class="relative size-12 shrink-0">
+        <div id="track-cover-skeleton" class="skeleton bg-container size-12 inset-0 rounded-md"></div>
+        <img id="track-cover" src="" alt="last played song cover" class="opacity-0 transition-opacity duration-300 size-12 rounded-md object-cover">
+      </div>
+      <div class="grow flex flex-col gap-1">
+        <!-- song title & skeleton -->
+        <div id="track-name-container" class="w-full">
+          <div id="track-name-skeleton" class="skeleton bg-container h-5 w-3/4 rounded"></div>
+          <h4 id="track-name" class="hidden text-lg/5 lg:text-xl/6 font-geist-mono"></h4>
+        </div>
+        <!-- song artist/album & skeleton -->
+         <div id="track-info-container" class="w-full">
+          <div id="track-info-skeleton" class="skeleton bg-container h-4 w-1/2 rounded"></div>
+          <p id="track-info" class="hidden text-sm/4 font-light"></p>
+        </div>
       </div>
       <IconButton id="track-url" href="#">
         <ExternalLink class="self-start size-6" />
@@ -72,12 +83,18 @@ import IconButton from '../buttons/IconButton.astro';
     const track = data.recenttracks.track[0]
     const isNowPlaying = track['@attr']?.nowplaying === 'true'
     
+    // ref elementos reales
     const nameElement = document.getElementById('track-name')
     const infoElement = document.getElementById('track-info')
     const coverElement = document.getElementById('track-cover') as HTMLImageElement
     const urlElement = document.getElementById('track-url') as HTMLAnchorElement
     const statusElement = document.getElementById('track-streaming-status')
     const indicatorElement = document.getElementById('track-streaming-now-indicator')
+    // ref skeletons
+    const coverSkeleton = document.getElementById('track-cover-skeleton')
+    const nameSkeleton = document.getElementById('track-name-skeleton')
+    const infoSkeleton = document.getElementById('track-info-skeleton')
+    const statusSkeleton = document.getElementById('track-status-skeleton')
     
     if (indicatorElement && isNowPlaying) {
       indicatorElement.classList.remove('w-0') 
@@ -89,10 +106,26 @@ import IconButton from '../buttons/IconButton.astro';
 
     if (nameElement) nameElement.textContent = track.name
     if (infoElement) infoElement.textContent = `${track.artist['#text']} • ${track.album['#text']}`
-    if (coverElement) coverElement.src = track.image[2]['#text']
     if (statusElement) statusElement.textContent = isNowPlaying 
         ? texts.nowPlaying 
         : getRelativeTime(track.date?.uts, track.date?.['#text'])
+    if (coverElement && coverSkeleton) {
+      coverElement.src = track.image[2]['#text'] || '/fallback-cover.png' 
+      
+      coverElement.onload = () => {
+        coverSkeleton.classList.add('hidden')
+        coverElement.classList.remove('opacity-0')
+      }
+    }
+
+    nameSkeleton?.classList.add('hidden')
+    nameElement?.classList.remove('hidden')
+    
+    infoSkeleton?.classList.add('hidden')
+    infoElement?.classList.remove('hidden')
+
+    statusSkeleton?.classList.add('hidden')
+    statusElement?.classList.remove('hidden')
 
     const itunesResponse = await fetch(
       `https://itunes.apple.com/search?term=${encodeURIComponent(track.artist['#text'] + ' ' + track.name)}&limit=1&entity=song`

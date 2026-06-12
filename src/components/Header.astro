@@ -11,8 +11,12 @@ import Badge from '../components/Badge.astro';
 import { Image } from 'astro:assets';
 import profilePic from '../assets/images/miiyop.png'
 
+import CvEsp from '/docs/cv_axel_rodriguez_dev_and_designer_esp.pdf'
+import CvEng from '/docs/cv_axel_rodriguez_dev_and_designer_eng.pdf'
+
 import { t, getLang } from '../i18n/utils';
 const currentLang = getLang(Astro.currentLocale)
+const currentCvLink = currentLang == 'es' ? CvEsp : CvEng 
 ---
 
 <header id="home" class="flex flex-col gap-6 mx-4 md:mx-8 lg:mx-12 z-2 scroll-mt-32">
@@ -37,7 +41,7 @@ const currentLang = getLang(Astro.currentLocale)
 	<!-- cv download, socials -->
 	<div class="border-b border-dashed border-divider"></div>
 	<div class="flex flex-row w-full gap-2">
-		<RainbowButton id="download-cv-button" href="/docs/cv_axel_rodriguez_dev_and_designer.pdf" download>
+		<RainbowButton id="download-cv-button" href={currentCvLink} download>
 			{t(currentLang, 'header.downloadCV')}
 			<Download slot="icon" class="size-4" />
 		</RainbowButton>
