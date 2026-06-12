@@ -13,7 +13,7 @@ export const labels = {
       "name": "Axel Rodríguez",
       "title": "Diseñador UI/UX, Desarrollador Web y Móvil",
       "about": {
-        "intro": "Hola, soy un desarrollador que ama diseñar —",
+        "intro": "Hola, soy un desarrollador apasionado por el diseño —",
         "degree": "Ingeniero en Tecnología de la Información",
         "rest": "enfocado en crear productos creativos y funcionales adaptados a las necesidades reales de los usuarios."
       },
