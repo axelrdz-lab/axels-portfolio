@@ -39,8 +39,8 @@ const description = currentLang === 'es' ? job.description.es : job.description.
     <div class="border-b border-dashed border-divider pt-4"></div>
     <ul class="text-base/[22px] flex flex-col gap-1">
       {description.map(point => (
-        <li class="text-sm flex gap-2">
-          <span class="mt-1">▸</span>
+        <li class="text-sm flex gap-2 items-start">
+          <span class="text-text-secondary m-0">▸</span>
           <span>{point}</span>
         </li>
       ))}

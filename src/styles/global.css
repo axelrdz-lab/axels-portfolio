@@ -32,7 +32,7 @@
   --color-border: rgba(249, 250, 251, 0.2);
   --color-container: rgba(249, 250, 251, 0.05);
 
-  --bg-color: rgb(38, 37, 42);
+  --bg-color: rgb(29, 25, 39);
   --gradient-bg: 
     radial-gradient(125% 125% at 50% 10%, rgb(31, 30, 35) 0%, rgb(29, 25, 39) 100%);
 
@@ -45,9 +45,9 @@
   --color-border: rgba(46, 46, 46, 0.15);
   --color-container: rgba(46, 46, 46, 0.07);
 
-  --bg-color: #e0decd;
+  --bg-color: #d5d5d5;
   --gradient-bg:
-    radial-gradient(400% 425% at 50% 10%, #EDEEF2 0%, #868686 100%);
+    radial-gradient(400% 400% at 50% 10%, #EDEEF2 0%, #868686 100%);
 }
 
 /*

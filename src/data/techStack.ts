@@ -74,6 +74,21 @@ export const techStack = [
     name: 'PostgreSQL',
   },
   {
+    id: 'mysql',
+    icon: 'Mysql',
+    name: 'MySQL'
+  },
+  {
+    id: 'node',
+    icon: 'Nodejs',
+    name: 'Node.js'
+  }, 
+  {
+    id: 'express',
+    icon: 'Express',
+    name: 'Express.js'
+  },
+  {
     id: 'git',
     icon: 'Git',
     name: 'Git',

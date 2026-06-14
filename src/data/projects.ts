@@ -15,7 +15,7 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    id: '1',
+    id: '3',
     name: { es: 'Tacea Music. Rediseño web', en: 'Tacea Music. Website Redesign' },
     description: { 
       es: 'Rediseño completo de una tienda de música local implementando una nueva identidad visual, arquitectura de información mejorada e implementación frontend con JavaScript vanilla.', 
@@ -51,7 +51,28 @@ export const projects: Project[] = [
     ]
   },
   {
-    id: '3',
+    id: '1',
+    name: { es: 'MindLink - Plataforma educativa tipo Classroom', en: 'MindLink - Educational plataform' },
+    description: { 
+      es: 'Plataforma web Fullstack para gestión de clases entre alumnos y profesores. Incluye arquitectura de API REST, manejo de roles protegidos, subida de archivos y almacenamiento en la nube.', 
+      en: 'Fullstack web platform for class management between students and teachers. Features a REST API architecture, protected role-based access control, file uploads, and cloud storage.' 
+    },
+    /*image*/
+    githubLink: 'https://github.com/axelrdz-lab/mindlink',
+    /*liveLink*/
+    status: 'in-development',
+    techStack: [
+      findTech('react'),
+      findTech('tailwind'),
+      findTech('css'),
+      findTech('typescript'),
+      findTech('node'),
+      findTech('express'),
+      findTech('mysql')
+    ]
+  },
+  {
+    id: '4',
     name: { es: 'Portafolio Personal', en: 'Personal Portfolio' },
     description: { 
       es: 'Portafolio personal construido con Astro, con soporte para dos idiomas, integración con Last.fm y modo oscuro.', 
@@ -67,21 +88,4 @@ export const projects: Project[] = [
       findTech('tailwind')
     ]
   },
-  {
-    id: '4',
-    name: { es: 'MindLink - Plataforma educativa tipo Classroom', en: 'MindLink - Educational plataform' },
-    description: { 
-      es: 'Plataforma web para gestión de clases entre alumnos y profesores. Subida de archivos, calificaciones y roles diferenciados por tipo de usuario', 
-      en: 'Web platform for class management between students and teachers. File uploads, grades, and differentiated roles by user type.' 
-    },
-    /*image*/
-    githubLink: 'https://github.com/axelrdz-lab/portfolio',
-    /*liveLink*/
-    status: 'in-development',
-    techStack: [
-      findTech('react'),
-      findTech('tailwind'),
-      findTech('css')
-    ]
-  }
 ]
